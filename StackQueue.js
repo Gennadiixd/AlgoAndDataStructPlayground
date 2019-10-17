@@ -11,6 +11,14 @@ class Q {
     execute() {
         this.q.forEach(cbf => cbf());
     }
+
+    do(){
+        if (this.stack.length) {
+            this.stack.shift()()
+        } else {
+            console.log(`${this.stack.length} <==== length of stack`);
+        }
+    }
 }
 
 const q = new Q();

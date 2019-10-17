@@ -35,10 +35,9 @@ class Stack {
         }
     }
 
-    do(){
-        if(this.stack.length){
-            this.stack[this.stack.length - 1]()
-            this.stack.pop()
+    do() {
+        if (this.stack.length) {
+            this.stack.pop()()
         } else {
             console.log(`${this.stack.length} <==== length of stack`);
         }
@@ -46,10 +45,10 @@ class Stack {
 }
 
 const stack = new Stack();
-stack.add(console.log, 'first');
-stack.add(console.log, 'second');
-stack.add(console.log, 'third');
-stack.execute();
+// stack.add(console.log, 'first');
+// stack.add(console.log, 'second');
+// stack.add(console.log, 'third');
+// stack.execute();
 
 stack.add(console.log, 'first');
 stack.do();
@@ -57,5 +56,8 @@ stack.add(console.log, 'second');
 stack.add(console.log, 'third');
 stack.do();
 stack.add(console.log, 'fourth');
+stack.do();
+stack.do();
+stack.do();
 stack.do();
 stack.do();

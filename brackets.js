@@ -1,4 +1,4 @@
-function bracketsChecker(n, strOfBrackets) {
+function bracketsChecker(n) {
     if (arguments.length - 1 !== n) {
         return false;
     }
@@ -20,6 +20,7 @@ function bracketsChecker(n, strOfBrackets) {
             ) {
                 stack.push(strOfBrackets[i]);
             } else {
+                if (!stack.length) return false;
                 if (strOfBrackets[i] !== mask[stack.pop()]) {
                     return false
                 }

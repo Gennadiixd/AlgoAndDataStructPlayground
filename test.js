@@ -4,10 +4,26 @@ module.exports = class Assert {
     }
 
     run(){
-        this.assertCreate();
-        this.assertPush();
-        this.assertPop();
-        this.assertReindex();
+        // this.assertCreate();
+        // this.assertPush();
+        // this.assertPop();
+        // this.assertReindex();
+        this.assertUnshift();
+    }
+    
+    assertUnshift(){
+        let arr = new this.Arr('one', 'two', 'three');
+        let returned = arr.unshift('zero');
+        if (arr[0] !== 'zero'){
+            throw new Error(`first element shuld be zero but have ${arr[0]}`);
+        }
+        if (arr.length !== 4) {
+            throw new Error(`length should be 4 but have ${arr.length}`);
+        }
+        if (returned !== 4){
+            throw new Error(`returned value should be 4 but have ${arr.length}`);
+        }
+        console.log(`Test ===> unshift <=== passed`);
     }
 
     assertCreate(){
@@ -29,7 +45,6 @@ module.exports = class Assert {
         if (arr.length !== 2){
             throw new Error(`expected length 2, got length ${arr.length}`);
         }
-        
         console.log(`Test ===> reindex <=== passed`);
     }
 

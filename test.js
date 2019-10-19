@@ -4,14 +4,15 @@ module.exports = class Assert {
     }
 
     run(){
-        // this.assertCreate();
-        // this.assertPush();
-        // this.assertPop();
+        this.assertCreate();
+        this.assertPush();
+        this.assertPop();
         // this.assertReindex();
         this.assertUnshift();
     }
     
     assertUnshift(){
+        console.log('Assert Unshift');
         let arr = new this.Arr('one', 'two', 'three');
         let returned = arr.unshift('zero');
         if (arr[0] !== 'zero'){

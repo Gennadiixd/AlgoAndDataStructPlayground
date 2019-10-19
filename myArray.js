@@ -4,13 +4,14 @@ class MyArray {
     constructor(...args) {
         this.length = 0
         if (args) {
-            for (let i = 0; i < args.length; i++ , this.length++) {
+            for (let i = 0; i < args.length; i++ ,this.length++) {
                 this[i] = args[i]
             }
         }
     }
 
     reindex() {
+        console.warn("Method reindex is deprecated! =)")
         const findSpaceIdx = () => {
             for (let i = 0; i < this.length; i++) {
                 if (this[i] === undefined) {
@@ -69,7 +70,7 @@ class MyArray {
         const offsetRight = () => {
             if (this.length) {
                 for (let i = this.length; i > 0; i--) {
-                    this[i] = this[i-1]
+                    this[i] = this[i - 1]
                 }
                 this.length++
             }

@@ -4,20 +4,24 @@ module.exports = class Assert {
     }
 
     run(){
-        // this.assertCreate();
-        // this.assertPush();
-        // this.assertPop();
-        // this.assertReindex();
-        // this.assertUnshift();
+        this.assertCreate();
+        this.assertPush();
+        this.assertPop();
+        this.assertUnshift();
         this.assertShift();
     }
 
     assertShift(){
         console.log('Assert Shift');
         let arr = new this.Arr('one', 'two', 'three');
-        console.log(arr);
         arr.shift();
-        console.log(arr);
+        if(arr[0] !== 'two'){
+            throw new Error(`first element shuld be two but have ${arr[0]}`);
+        }
+        if (arr.length !== 2) {
+            throw new Error(`length should be 2 but have ${arr.length}`);
+        }
+        console.log(`Test ===> shift <=== passed`);
     }
     
     assertUnshift(){
@@ -49,7 +53,7 @@ module.exports = class Assert {
     }
 
     assertReindex() {
-        console.log('Assert Reindex');
+        console.log('Reindex is deprecated');
         let arr = new this.Arr(1, undefined, 3);
         arr.reindex();
         if (arr.length !== 2){

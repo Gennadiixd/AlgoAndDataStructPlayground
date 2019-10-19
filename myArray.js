@@ -72,18 +72,20 @@ class MyArray {
         return toBeReturned;
     }
 
-    unshift(item) {
+    unshift(...items) {
         const offsetRight = () => {
             if (this.length) {
                 for (let i = this.length; i > 0; i--) {
-                    this[i] = this[i - 1]
+                    this[i] = this[i - 1];
                 }
                 this.length++
             }
         }
-        offsetRight()
-        this[0] = item
-        return this.length
+        for (let i = 0; i < items.length; i++) {
+            offsetRight();
+            this[i] = items[i];
+        }
+        return this.length;
     }
 }
 

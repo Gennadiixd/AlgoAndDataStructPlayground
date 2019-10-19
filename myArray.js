@@ -9,6 +9,7 @@ class MyArray {
             }
         }
     }
+    
     reindex() {
         const findSpaceIdx = () => {
             for (let i = 0; i < this.length; i++) {
@@ -58,8 +59,10 @@ class MyArray {
     }
 
     shift() {
+        const toBeReturned = this[0];
         delete this[this.length-- - 1];
-        this.reindex()
+        this.reindex();
+        return toBeReturned;
     }
 }
 

@@ -7,9 +7,11 @@ module.exports = class Assert {
         this.assertCreate();
         this.assertPush();
         this.assertPop();
+        this.assertReindex();
     }
 
     assertCreate(){
+        console.log('Assert Create');
         let arr = new this.Arr(1,2,3);
         if (arr.length !==3){
             throw new Error(`Length ${arr.length} shuld be 3`);
@@ -20,7 +22,19 @@ module.exports = class Assert {
         console.log(`Test ===> creation <=== passed`);
     }
 
+    assertReindex() {
+        console.log('Assert Reindex');
+        let arr = new this.Arr(1, undefined, 3);
+        arr.reindex();
+        if (arr.length !== 2){
+            throw new Error(`expected length 2, got length ${arr.length}`);
+        }
+        
+        console.log(`Test ===> reindex <=== passed`);
+    }
+
     assertPush(){
+        console.log('Assert Push');
         let arr = new this.Arr();
         let lengthBefore = arr.length;
         let returned = arr.push('test');
@@ -42,6 +56,7 @@ module.exports = class Assert {
     }
 
     assertPop(){
+        console.log('Assert Pop');
         let arr = new this.Arr();
         let returned = arr.pop();
         if (returned){

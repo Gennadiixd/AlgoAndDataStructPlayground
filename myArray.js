@@ -10,7 +10,7 @@ class MyArray {
         }
     }
     reindex() {
-        const findSpace = () => {
+        const findSpaceIdx = () => {
             for (let i = 0; i < this.length; i++) {
                 if (this[i] === undefined) {
                     return i
@@ -19,7 +19,7 @@ class MyArray {
             return undefined
         }
 
-        const findNearestValue = (index) => {
+        const findNearestValueIdx = (index) => {
             for (let i = index; i < this.length; i++) {
                 if (this[i] !== undefined) {
                     return i
@@ -28,9 +28,9 @@ class MyArray {
             return undefined
         }
 
-        let spaceIdx = findSpace();
+        let spaceIdx = findSpaceIdx();
         while (spaceIdx !== undefined) {
-            let nearestValueIdx = findNearestValue(spaceIdx)
+            let nearestValueIdx = findNearestValueIdx(spaceIdx)
             if (nearestValueIdx !== undefined) {
                 this[spaceIdx] = this[nearestValueIdx]
                 delete this[nearestValueIdx]
@@ -38,7 +38,7 @@ class MyArray {
                 this.length = spaceIdx
                 delete this[spaceIdx]
             }
-            spaceIdx = findSpace();
+            spaceIdx = findSpaceIdx();
         }
     }
 

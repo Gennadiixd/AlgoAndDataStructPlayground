@@ -60,9 +60,15 @@ class MyArray {
     }
 
     shift() {
+        const offsetLeft = () => {
+            for (let i = 0; i < this.length; i++) {
+                this[i] = this[i + 1];
+            }
+            delete this[this.length-- -1]
+        }
         const toBeReturned = this[0];
-        delete this[this.length-- - 1];
-        this.reindex();
+        delete this[0];
+        offsetLeft();
         return toBeReturned;
     }
 

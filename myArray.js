@@ -158,9 +158,9 @@ class MyArray {
         return accumulator
     }
 
-    flat(recursiveArr) {
+    flat() {
 
-        let flatArray = recursiveArr || new MyArray()
+        let flatArray = new MyArray()
         let flatHelper = (arr) => {
             for (let i = 0; i < arr.length; i++) {
                 if (arr[i] instanceof MyArray) {
@@ -169,7 +169,6 @@ class MyArray {
                     flatArray.push(arr[i])
                 }
             }
-
         }
         flatHelper(this)
         return flatArray

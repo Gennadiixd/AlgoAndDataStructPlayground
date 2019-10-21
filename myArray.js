@@ -1,5 +1,3 @@
-const Assert = require('./test.js')
-
 class MyArray {
     constructor(...args) {
         this.length = 0
@@ -185,6 +183,4 @@ class MyArray {
     }
 }
 
-let assert = new Assert(MyArray);
-
-assert.run();
+module.exports = MyArray;

@@ -178,9 +178,9 @@ module.exports = class Assert {
     assertFlat(){
         console.log('Assert Flat');
         console.group();
-        let arr = new this.Arr(1, 2, 3, 10);
+        let arr2 = new this.Arr(1, 2, 3, 10);
+        let arr = new this.Arr(1, 2, arr2, 10);
         let arrToBeFlat = new this.Arr(22, 33, arr, 10);
-        arrToBeFlat.flat()
         console.log(arrToBeFlat.flat());
         
 

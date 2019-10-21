@@ -158,10 +158,17 @@ class MyArray {
         return accumulator
     }
 
-    flat() {
-
+    flat(depth) {
+        if(!depth) depth = Infinity
         let flatArray = new MyArray()
+        
         let flatHelper = (arr) => {
+            --depth
+            if (depth < -1){
+                flatArray.push(arr)
+                return
+            }
+
             for (let i = 0; i < arr.length; i++) {
                 if (arr[i] instanceof MyArray) {
                     flatHelper(arr[i])
@@ -173,7 +180,6 @@ class MyArray {
         flatHelper(this)
         return flatArray
     }
-
 }
 
 let assert = new Assert(MyArray);

@@ -108,6 +108,68 @@ class MyArray {
         }
         return mapedArr
     }
+
+    indexOf(searchElement) {
+        for (let i = 0; i < this.length; i++) {
+            if (this[i] === searchElement) {
+                return i
+            }
+        }
+        return -1
+    }
+
+    concat(arr) {
+        return [...this, ...arr]
+    }
+
+    from(iterable) {
+        let newArr = new MyArray()
+        iterable.forEach(el => newArr.push(el))
+        return newArr
+    }
+
+    entries() {
+        let _this = this
+        return function* () {
+            for (let i = 0; i < _this.length; i++) {
+                if (i === _this.length - 1) {
+                    return [i, _this[i]]
+                }
+                yield [i, _this[i]]
+            }
+        }()
+    }
+
+    every(cbf) {
+        let copiedArr = {...this}
+        for (let i = 0; i < this.length; i++) {
+            if (!cbf(this[i], i, copiedArr)) {
+                return false
+            }
+        }
+        return true
+    }
+
+    reduce(cbf, initValue) {
+        let accumulator = initValue || 0;
+        for (let i = this.length - 1; i >= 0; i--) {
+            accumulator = cbf(accumulator, this[i])
+        }
+        return accumulator
+    }
+
+    flat(recursiveArr) {
+        let flatArray = recursiveArr || new MyArray()
+        for (let i = 0; i < this.length; i++) {
+            if (this[i] instanceof MyArray) {
+                this[i].flat(flatArray)
+            } else {
+                flatArray.push(this[i])
+            }
+        }
+        return flatArray
+    }
+
 }
 
 let assert = new Assert(MyArray);

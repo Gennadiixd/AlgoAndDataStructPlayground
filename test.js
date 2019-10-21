@@ -9,7 +9,8 @@ module.exports = class Assert {
         // this.assertPop();
         // this.assertUnshift();
         // this.assertShift();
-        this.assertMap();
+        // this.assertMap();
+        this.assertFlat()
     }
 
     assertShift() {
@@ -124,10 +125,10 @@ module.exports = class Assert {
         let arr = new this.Arr(1, 7, 3, -4, 10, 7, 5);
         let arrCopy = {...arr}
         let filteredArr = arr.filter((el) => el > 5);
-        if (filteredArr.length !== 3){
+        if (filteredArr.length !== 3) {
             throw new Error(`filtered array length should be 3 but got ${filteredArr.length}`);
         }
-        if (JSON.stringify(arrCopy) !== JSON.stringify(arr)){
+        if (JSON.stringify(arrCopy) !== JSON.stringify(arr)) {
             throw new Error(`array ${arr} shuld be equal to ${arrCopy}`);
 
         }
@@ -140,10 +141,10 @@ module.exports = class Assert {
         console.group();
         let arr = new this.Arr(1, 7, 3, -4, 10, 7, 5);
         let arrCopy = {...arr}
-        let mappedArr = arr.map((el,i,v) => {
+        let mappedArr = arr.map((el, i, v) => {
             return el + 1
         });
-        if (mappedArr[0] - arr[0] !== 1){
+        if (mappedArr[0] - arr[0] !== 1) {
             throw new Error(`expected ${arr[0]} shuld be greater at 1 than ${mappedArr[0]}`);
         }
         if (JSON.stringify(arrCopy) !== JSON.stringify(arr)) {
@@ -151,5 +152,37 @@ module.exports = class Assert {
         }
         console.log(`[V] passed`);
         console.groupEnd();
+    }
+
+    assertEntries() {
+        console.log('Assert Entries');
+        console.group();
+        let arr = new this.Arr('t', 'e', 's', 't');
+        let arrIt = arr.entries()
+        console.log(arrIt.next().value);
+        console.log(arrIt.next().value);
+        console.log(arrIt.next().value);
+
+    }
+
+    assertReduce() {
+        console.log('Assert Reduce');
+        console.group();
+        let arr = new this.Arr(1, 2, 3, 10);
+        console.log(arr.reduce(function (a, b) {
+            return a + b;
+        }));
+
+    }
+
+    assertFlat(){
+        console.log('Assert Flat');
+        console.group();
+        let arr = new this.Arr(1, 2, 3, 10);
+        let arrToBeFlat = new this.Arr(22, 33, arr, 10);
+        arrToBeFlat.flat()
+        console.log(arrToBeFlat.flat());
+        
+
     }
 }

@@ -159,14 +159,19 @@ class MyArray {
     }
 
     flat(recursiveArr) {
+
         let flatArray = recursiveArr || new MyArray()
-        for (let i = 0; i < this.length; i++) {
-            if (this[i] instanceof MyArray) {
-                this[i].flat(flatArray)
-            } else {
-                flatArray.push(this[i])
+        let flatHelper = (arr) => {
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i] instanceof MyArray) {
+                    flatHelper(arr[i])
+                } else {
+                    flatArray.push(arr[i])
+                }
             }
+
         }
+        flatHelper(this)
         return flatArray
     }
 

@@ -119,7 +119,10 @@ class MyArray {
     }
 
     concat(arr) {
-        return [...this, ...arr]
+        let newArr = new MyArray()
+        newArr.push(arr, this)
+        newArr = newArr.flat()
+        return newArr
     }
 
     from(iterable) {

@@ -10,7 +10,7 @@ module.exports = class Assert {
         // this.assertUnshift();
         // this.assertShift();
         // this.assertMap();
-        this.assertFlat()
+        this.assertConcat()
     }
 
     assertShift() {
@@ -172,7 +172,16 @@ module.exports = class Assert {
         console.log(arr.reduce(function (a, b) {
             return a + b;
         }));
+    }
 
+    assertConcat(){
+        console.log('Assert Concat');
+        console.group();
+        let arr2 = new this.Arr('s', 'q', 't', 'y');
+        let arr = new this.Arr(1, 2, 10);
+        
+        console.log(arr.concat(arr2));
+        
     }
 
     assertFlat(){

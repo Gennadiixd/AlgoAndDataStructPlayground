@@ -4,7 +4,7 @@ class MyArray {
     constructor(...args) {
         this.length = 0
         if (args) {
-            for (let i = 0; i < args.length; i++ ,this.length++) {
+            for (let i = 0; i < args.length; i++ , this.length++) {
                 this[i] = args[i]
             }
         }
@@ -64,7 +64,7 @@ class MyArray {
             for (let i = 0; i < this.length; i++) {
                 this[i] = this[i + 1];
             }
-            delete this[this.length-- -1]
+            delete this[--this.length]
         }
         const toBeReturned = this[0];
         delete this[0];
@@ -73,10 +73,11 @@ class MyArray {
     }
 
     unshift(...items) {
-        const offsetRight = () => {
+        const offsetRight = (length) => {
+            if (!length) length = 0;
             if (this.length) {
                 for (let i = this.length; i > 0; i--) {
-                    this[i] = this[i - 1];
+                    this[i + length] = this[i - 1];
                 }
                 this.length++
             }
@@ -86,6 +87,26 @@ class MyArray {
             this[i] = items[i];
         }
         return this.length;
+    }
+
+    filter(cbf) {
+        let copiedArr = {...this}
+        let filteredArr = new MyArray()
+        for (let i = 0; i < this.length; i++) {
+            if (cbf(this[i], i, copiedArr)) {
+                filteredArr.push(this[i])
+            }
+        }
+        return filteredArr
+    }
+
+    map(cbf) {
+        let copiedArr = {...this}
+        let mapedArr = new MyArray()
+        for (let i = 0; i < this.length; i++) {
+            mapedArr.push(cbf(this[i], i, copiedArr))
+        }
+        return mapedArr
     }
 }
 

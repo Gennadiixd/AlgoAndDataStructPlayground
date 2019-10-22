@@ -182,5 +182,3 @@ class MyArray {
         return flatArray
     }
 }
-
-module.exports = MyArray;

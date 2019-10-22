@@ -1,9 +1,9 @@
 class MyString {
     constructor(...args) {
-        this.length = 0
+        this.length = 0;
         if (args) {
             for (let i = 0; i < args.length; i++ , this.length++) {
-                this[i] = args[i]
+                this[i] = args[i];
             }
         }
     }
@@ -96,24 +96,44 @@ class MyString {
     }
 
     charCodeAt(index) {
-        return this.constructor.getValue([this[index]])
+        return this.constructor.getValue([this[index]]);
     }
 
     fromCharCode(...codes) {
-        let pseudoString = []
+        let pseudoString = [];
         for (let i = 0; i < codes.length; i++) {
-            pseudoString.push(this.constructor.getValue([codes[i]]))
+            pseudoString.push(this.constructor.getValue([codes[i]]));
         }
-        return new MyString(...pseudoString)
+        return new MyString(...pseudoString);
     }
 
     concat(str) {
         let newString = new MyString(...this, ...str);
         return newString;
     }
+
+    split(separator) {
+        let arr = [];
+        let buffer = [];
+        for (let i = 0; i < this.length; i++) {
+            if(separator === ''){
+                arr.push(new MyString(this[i]));
+            } else if (this[i] !== separator) {
+                buffer.push(this[i]);
+            } else {
+                arr.push(new MyString(...buffer));
+                buffer = [];
+            }
+        }
+        if (buffer.length) arr.push(new MyString(...buffer));
+        return arr;
+    }
+
 }
 
-let str = new MyString('h', 'e', 'l', 'l', 'o')
+let str = new MyString('h', '.', 'e', 'l', '.', 'l', 'o')
 // console.log(str.fromCharCode(115, 116, 117));
 // console.log(str.charCodeAt(2))
-console.log(str.concat('dddd'));
+// console.log(str.concat('dddd'));
+console.log(str.split('.'));
+

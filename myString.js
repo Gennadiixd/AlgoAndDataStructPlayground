@@ -116,7 +116,7 @@ class MyString {
         let arr = [];
         let buffer = [];
         for (let i = 0; i < this.length; i++) {
-            if(separator === ''){
+            if (separator === '') {
                 arr.push(new MyString(this[i]));
             } else if (this[i] !== separator) {
                 buffer.push(this[i]);
@@ -129,15 +129,15 @@ class MyString {
         return arr;
     }
 
-    charAt(index){
-        return this[index] || -1
+    charAt(index) {
+        return this[index] || -1;
     }
 
     includes(subString) {
         const compare = (str1, str2) => {
-            if(str1.length !== str2.length) return false;
+            if (str1.length !== str2.length) return false;
             for (let i = 0; i < str1.length; i++) {
-                if (str1[i] !== str2[i]){
+                if (str1[i] !== str2[i]) {
                     return false;
                 }
             }
@@ -146,18 +146,53 @@ class MyString {
 
         let mainString = this.split(' ');
         for (let i = 0; i < mainString.length; i++) {
-            if(compare(mainString[i], subString)){
+            if (compare(mainString[i], subString)) {
                 return true;
             }
         }
         return false;
     }
+
+    slice(startIdx, endIdx) {
+        if (endIdx === undefined) endIdx = this.length;
+        if (endIdx <= 0) endIdx = this.length + endIdx;
+        let sliced = [];
+        for (let i = 0; i <= this.length; i++) {
+            if (i > startIdx && i <= endIdx) {
+                sliced.push(this[i-1]);
+            }
+        }
+        return new MyString(...sliced);
+    }
+
+    trim() {
+        let trimStart = 0;
+        let trimEnd = 0;
+        for (let i = 0; i < this.length; i++) {
+            if (this[i] === ' '){
+                trimStart++
+            } else {
+                break;
+            }
+        }
+        for (let i = this.length-1; i > 0; i--) {
+            if (this[i] === ' ') {
+                trimEnd--
+            } else {
+                break;
+            }
+        }
+        return this.slice(trimStart, trimEnd)
+    }
 }
 
-let str = new MyString('h', '.', 'e', 'l', '.', 'l', 'o', ' ', 'w' , 'o', 'r', 'l', 'd')
+let str = new MyString(' ', ' ', ' ', ' ', 'h', '.', 'e', 'l', '.', 'l', 'o', ' ', 'w', 'o', 'r', 'l', 'd', ' ', ' ')
 let str2 = new MyString('w', 'o', 'r', 'd', 'd')
 // console.log(str.fromCharCode(115, 116, 117));
 // console.log(str.charCodeAt(2))
 // console.log(str.concat('dddd'));
-console.log(str.includes(str2));
+// console.log(str.includes(str2));
+// console.log(str.slice(0, 0))
+console.log(str.trim())
+
 

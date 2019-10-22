@@ -5,8 +5,9 @@ class MyString {
             for (let i = 0; i < args.length; i++ , this.length++) {
                 this[i] = args[i]
             }
-        }        
+        }
     }
+
     static getValue(codeOrSymbol) {
         const uniCodeMap = {
             'a': 97,
@@ -73,19 +74,46 @@ class MyString {
         return uniCodeMap[codeOrSymbol]
     }
 
+    [Symbol.iterator]() {
+        let length = this.length;
+        let current = 0;
+        let _this = this;
+
+        return {
+            next() {
+                if (current === length) {
+                    return {
+                        done: true
+                    }
+                } else {
+                    return {
+                        done: false,
+                        value: _this[current++]
+                    }
+                }
+            }
+        }
+    }
+
     charCodeAt(index) {
         return this.constructor.getValue([this[index]])
     }
 
-    fromCharCode(...codes){
+    fromCharCode(...codes) {
         let pseudoString = []
         for (let i = 0; i < codes.length; i++) {
             pseudoString.push(this.constructor.getValue([codes[i]]))
         }
         return new MyString(...pseudoString)
     }
+
+    concat(str) {
+        let newString = new MyString(...this, ...str);
+        return newString;
+    }
 }
 
 let str = new MyString('h', 'e', 'l', 'l', 'o')
-console.log(str.fromCharCode(115, 116, 117));
-// console.log(str.charCodeAt(2));
+// console.log(str.fromCharCode(115, 116, 117));
+// console.log(str.charCodeAt(2))
+console.log(str.concat('dddd'));

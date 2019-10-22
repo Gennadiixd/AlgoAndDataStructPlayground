@@ -75,13 +75,21 @@ describe("MyArray", () => {
     });
 
     describe("map", () => {
-
+        it("returns morped aaray as to cbf", () => {
+            let mapped = myArray.map(el => el + 1)
+            expect(mapped[0]).toEqual(2);
+        });
+        it("does not mutate original strucuture", () => {
+            arrayBefore = JSON.stringify(myArray)
+            myArray.map(el => el + 1)
+            expect(JSON.stringify(myArray)).toEqual(arrayBefore);
+        });
     });
 
     describe("entries", () => {
         it("returns arrays with key and value", () => {
             let keysValues = myArray.entries().next().value
-            expect(JSON.stringify(keysValues)).toEqual(JSON.stringify([0,1]));
+            expect(JSON.stringify(keysValues)).toEqual(JSON.stringify([0, 1]));
         });
         it("shuld not return more than array consists of", () => {
             let arrEntries = myArray.entries()
@@ -95,12 +103,21 @@ describe("MyArray", () => {
             arrEntries.next().value
             arrEntries.next().value
             let lastVaule = arrEntries.next().value
-            expect(lastVaule).toEqual([2,3]);
+            expect(lastVaule).toEqual([2, 3]);
         });
     });
 
     describe("reduce", () => {
-
+        it("shuld accumulated values", () => {
+            let toBeReturned = myArray.reduce((a, b) => a + b)
+            expect(toBeReturned).toEqual(6);
+        });
+        it("shuld accumulated values with init value 10", () => {
+            let toBeReturned = myArray.reduce((a, b) => {
+                return a + b
+            }, 10)
+            expect(toBeReturned).toEqual(16);
+        });
     });
 
     describe("concat", () => {

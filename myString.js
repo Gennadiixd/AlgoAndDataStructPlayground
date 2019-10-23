@@ -135,7 +135,7 @@ class MyString {
 
     includes(subString) {
         for (let i = 0; i < this.length; i++) {
-            let isConsists = []
+            let isConsists = [];
             for (let j = 0; j < subString.length; j++) {
                 if (!this[j + i]) return false;
                 if(this[j + i] === subString[j]){
@@ -181,6 +181,31 @@ class MyString {
         }
         return this.slice(trimStart, trimEnd)
     }
+
+    valueOf(){
+        let str = '';
+        for (let i = 0; i < this.length; i++) {
+            str += this[i]
+        }
+        return str
+    }
+
+    lastIndexOf(char){
+        for (let i = this.length; i > 0 ; i--) {
+            if (this[i] === char){
+                return i
+            }
+        }
+        return -1
+    }
+
+    padEnd(num, str){
+        for (let i = 0,j = 0; i < num; i++, j++) {
+            if(str.length <= j) j = 0
+            this[this.length + i] = str[j]
+        }
+        return this
+    }
 }
 
 let str = new MyString(' ', ' ', ' ', ' ', 'h', '.', 'e', ' ', 'l', '.', 'l', ' ', 'o', ' ', 'w', 'o', 'r', 'l', 'd', ' ', ' ')
@@ -190,6 +215,12 @@ let str2 = new MyString('w', 'o')
 // console.log(str.concat('dddd'));
 // console.log(str.includes(str2));
 // console.log(str.slice(0, 0))
-console.log(str.includes(str2))
+// console.log(str.includes(str2))
+// console.log(str.valueOf());
+// console.log(str.lastIndexOf('x'))
+console.log(str.padEnd(5,'foo'))
+
+
+
 
 

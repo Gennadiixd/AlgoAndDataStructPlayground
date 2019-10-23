@@ -134,19 +134,16 @@ class MyString {
     }
 
     includes(subString) {
-        const compare = (str1, str2) => {
-            if (str1.length !== str2.length) return false;
-            for (let i = 0; i < str1.length; i++) {
-                if (str1[i] !== str2[i]) {
-                    return false;
+        for (let i = 0; i < this.length; i++) {
+            let isConsists = []
+            for (let j = 0; j < subString.length; j++) {
+                if (!this[j + i]) return false;
+                if(this[j + i] === subString[j]){
+                    isConsists.push(true);
                 }
             }
-            return true;
-        }
-
-        let mainString = this.split(' ');
-        for (let i = 0; i < mainString.length; i++) {
-            if (compare(mainString[i], subString)) {
+            
+            if (isConsists.length === subString.length){
                 return true;
             }
         }
@@ -186,13 +183,13 @@ class MyString {
     }
 }
 
-let str = new MyString(' ', ' ', ' ', ' ', 'h', '.', 'e', 'l', '.', 'l', 'o', ' ', 'w', 'o', 'r', 'l', 'd', ' ', ' ')
-let str2 = new MyString('w', 'o', 'r', 'd', 'd')
+let str = new MyString(' ', ' ', ' ', ' ', 'h', '.', 'e', ' ', 'l', '.', 'l', ' ', 'o', ' ', 'w', 'o', 'r', 'l', 'd', ' ', ' ')
+let str2 = new MyString('w', 'o')
 // console.log(str.fromCharCode(115, 116, 117));
 // console.log(str.charCodeAt(2))
 // console.log(str.concat('dddd'));
 // console.log(str.includes(str2));
 // console.log(str.slice(0, 0))
-console.log(str.trim())
+console.log(str.includes(str2))
 
 

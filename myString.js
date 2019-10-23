@@ -202,14 +202,14 @@ class MyString {
     padEnd(num, str){
         for (let i = 0,j = 0; i < num; i++, j++) {
             if(str.length <= j) j = 0
-            this[this.length + i] = str[j]
+            this[this.length++] = str[j]
         }
         return this
     }
 }
 
 let str = new MyString(' ', ' ', ' ', ' ', 'h', '.', 'e', ' ', 'l', '.', 'l', ' ', 'o', ' ', 'w', 'o', 'r', 'l', 'd', ' ', ' ')
-let str2 = new MyString('w', 'o')
+// let str2 = new MyString('w', 'o')
 // console.log(str.fromCharCode(115, 116, 117));
 // console.log(str.charCodeAt(2))
 // console.log(str.concat('dddd'));
@@ -217,8 +217,8 @@ let str2 = new MyString('w', 'o')
 // console.log(str.slice(0, 0))
 // console.log(str.includes(str2))
 // console.log(str.valueOf());
-// console.log(str.lastIndexOf('x'))
-console.log(str.padEnd(5,'foo'))
+// console.log(str.lastIndexOf('o'))
+// console.log(str.padEnd(5,'foo'))
 
 
 
